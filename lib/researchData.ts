@@ -7,6 +7,8 @@ export const researchProjects = [
         sponsor: "Indian Council of Social Science Research (ICSSR), New Delhi",
         year: "2024-2026",
     },
+
+    
     {
         title: "Skilling the Unskilled and the Less Skilled",
         description:

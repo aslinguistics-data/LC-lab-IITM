@@ -23,7 +23,7 @@ export const principalInvestigator: PrincipalInvestigator = {
     title: "Assistant Professor, Department of Humanities and Social Sciences, IIT Madras | Faculty PI at CeRAI, IIT Madras",
     interests: "Linguistic Typology, Syntax, Pragmatics, Language Processing, Eye-tracking, Cognition Studies",
     image: "https://res.cloudinary.com/dt8amwctw/image/upload/v1749377865/ani_llz6al.jpg",
-    email: "aslinguistics.iitm@gmail.com",
+    email: "anindita@zmail.iitm.ac.in",
     phone: "+91 44 2257 4534",
     linkedInLink: "https://www.linkedin.com/in/anindita-sahoo-3b971515/",
     iitmprofile: "https://hss.iitm.ac.in/anindita-sahoo/#",

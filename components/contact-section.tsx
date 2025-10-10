@@ -101,10 +101,10 @@ export function ContactSection() {
                       <div>
                         <h3 className="font-semibold text-black mb-1">Email</h3>
                         <a
-                            href={`mailto:${principalInvestigator.email}`}
+                            href={`mailto:lclab@smail.iitm.ac.in`}
                             className="text-black hover:text-gray-700 transition-colors"
                         >
-                          {principalInvestigator.email}
+                          {'lclab@smail.iitm.ac.in'}
                         </a>
                       </div>
                     </div>
