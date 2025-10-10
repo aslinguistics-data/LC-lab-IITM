@@ -135,6 +135,7 @@ export function ContactSection() {
                         <h3 className="font-bold text-slate-900 mb-1">LinkedIn</h3>
                         <a
                             href={`mailto:lclab@smail.iitm.ac.in`}
+                            href={`mailto:lclab@smail.iitm.ac.in`}
                             className="text-black hover:text-gray-700 transition-colors"
                         >
                           {'lclab@smail.iitm.ac.in'}
