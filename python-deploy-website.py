@@ -8,6 +8,7 @@ from tkinter import ttk, messagebox, filedialog
 from ftplib import FTP, FTP_TLS, error_perm
 from shutil import which
 import platform
+import datetime
 
 IS_WINDOWS = platform.system() == "Windows"
 
@@ -48,6 +49,24 @@ def run_streamed(cmd, cwd=None, env=None, log=lambda s: None):
     proc.wait()
     if proc.returncode != 0:
         raise RuntimeError(f"Command failed ({proc.returncode}): {' '.join(final_cmd)}")
+
+
+def git_commit_and_push(project_dir, log):
+    try:
+        # Stage changes
+        run_streamed(["git", "add", "."], cwd=project_dir, log=log)
+
+        # Commit with timestamp message
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        commit_msg = f"Auto deploy commit at {timestamp}"
+        run_streamed(["git", "commit", "-m", commit_msg], cwd=project_dir, log=log)
+
+        # Push to main branch
+        run_streamed(["git", "push", "origin", "main"], cwd=project_dir, log=log)
+
+        log("✓ Git changes committed and pushed successfully")
+    except RuntimeError as e:
+        log(f"✗ Git operation failed: {e}")
 
 
 class FTPDeployer(threading.Thread):
@@ -137,6 +156,9 @@ class FTPDeployer(threading.Thread):
                         self.upload_file(ftp, path, remote_path)
 
                 self.log("✓ Deployment complete")
+                self.log("=== Committing and pushing changes to git ===")
+                git_commit_and_push(self.project_dir, self.log)
+
             finally:
                 try:
                     ftp.quit()
@@ -151,6 +173,7 @@ class DeployGUI:
         self.root = root
         self.root.title("Next.js → FTP Deployer")
         self.log_queue = queue.Queue()
+
 
         frm = ttk.Frame(root, padding=10)
         frm.grid(row=0, column=0, sticky="nsew")
@@ -204,6 +227,10 @@ class DeployGUI:
             frm, text="Skip build (just upload out/)", variable=self.skip_build
         ).grid(row=7, column=1, sticky="w")
 
+        self.btn_pull = ttk.Button(frm, text="Pull Changes", command=self.pull_changes)
+        self.btn_pull.grid(row=8, column=0, pady=10, sticky="w")
+
+
         self.btn_deploy = ttk.Button(frm, text="Deploy", command=self.deploy)
         self.btn_deploy.grid(row=8, column=1, pady=10, sticky="e")
 
@@ -214,6 +241,32 @@ class DeployGUI:
         root.grid_columnconfigure(0, weight=1)
 
         self.root.after(150, self.poll_log)
+    def pull_changes(self):
+        project_dir = self.entry_project.get().strip()
+        if not project_dir:
+            messagebox.showerror("Error", "Project directory must be specified")
+            return
+
+        self.text_log.delete("1.0", tk.END)
+        self.btn_pull.config(state="disabled")
+        self.btn_deploy.config(state="disabled")
+
+        def log(msg):
+            self.log_queue.put(msg)
+
+        def worker():
+            try:
+                log(f"=== Pulling changes from origin/main in {project_dir} ===")
+                run_streamed(["git", "pull", "origin", "main"], cwd=project_dir, log=log)
+                log("✓ Pull complete")
+            except RuntimeError as e:
+                log(f"✗ Pull failed: {e}")
+            finally:
+                self.root.after(0, lambda: self.btn_pull.config(state="normal"))
+                self.root.after(0, lambda: self.btn_deploy.config(state="normal"))
+                self.log_queue.put("— Done —")
+
+        threading.Thread(target=worker, daemon=True).start()
 
     def browse_project(self):
         path = filedialog.askdirectory(
