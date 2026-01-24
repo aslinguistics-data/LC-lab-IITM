@@ -206,7 +206,9 @@ class DeployGUI:
 
         ttk.Label(frm, text="Remote folder:").grid(row=3, column=0, sticky="w")
         self.entry_dir = ttk.Entry(frm, width=50)
-        self.entry_dir.insert(0, "/anindita")
+        #self.entry_dir.insert(0, "/anindita")
+        self.entry_dir.insert(0, "/")
+
         self.entry_dir.grid(row=3, column=1, sticky="ew")
 
         ttk.Label(frm, text="Username:").grid(row=4, column=0, sticky="w")
