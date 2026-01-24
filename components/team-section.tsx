@@ -4,56 +4,59 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent } from "@/components/ui/card"
 import { principalInvestigator, teamMembers, othersMembers, researchStaff, friends, type TeamMember } from "@/lib/teamData"
-import {Badge} from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 export function TeamSection() {
     const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
     const router = useRouter()
 
     return (
-        <section id="team" className="pt-32 py-20 bg-slate-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="team" className="pt-24 pb-16 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header */}
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-black text-center mb-8 border-b-4 border-[#000080]  inline-block w-full pb-4">Our Team</h2>
-                    <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                <div className="text-center mb-10 mt-8">
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-6">
+                        Our Team
+                    </h2>
+                    <div className="w-24 h-1 bg-[#000080] mx-auto rounded-full mb-6"></div>
+                    <p className="text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed">
                         Meet the dedicated researchers advancing our understanding of language and cognition.
                     </p>
                 </div>
 
+
                 {/* Principal Investigator */}
-                <div className="mb-16">
-                    <h3 className="text-4xl font-semibold text-slate-900 mb-8 text-center">Principal Investigator</h3>
-                    <Card className="max-w-4xl mx-auto shadow-lg rounded-xl hover:shadow-xl transition-all duration-300">
-                        <CardContent className="p-8">
-                            <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8">
-                                <div className="relative flex-shrink-0">
+                <div className="mb-24">
+                    <h3 className="text-3xl font-bold text-slate-900 mb-8 text-center">Principal Investigator</h3>
+                    <Card className="max-w-5xl mx-auto shadow-sm border border-slate-200 rounded-2xl overflow-hidden bg-white hover:shadow-md transition-shadow duration-300">
+                        <CardContent className="p-8 md:p-10">
+                            <div className="flex flex-col md:flex-row gap-10 items-start">
+                                <div className="relative flex-shrink-0 w-full md:w-auto flex justify-center md:block">
                                     <img
                                         src={principalInvestigator.image || "/placeholder.svg"}
                                         alt={principalInvestigator.name}
-                                        className="w-48 h-full rounded-2xl object-cover shadow-lg"
+                                        className="w-56 h-64 object-cover rounded-xl shadow-sm filter grayscale-[10%] hover:grayscale-0 transition-all duration-500"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
                                 </div>
-                                <div className="flex-1 text-center lg:text-left flex flex-col justify-between">
+                                <div className="flex-1 text-center md:text-left space-y-6">
                                     <div>
                                         <h4 className="text-3xl font-bold text-slate-900 mb-2">{principalInvestigator.name}</h4>
-                                        <p className="text-lg text-slate-600 mb-4">{principalInvestigator.title}</p>
-                                        <p className="text-slate-700 mb-6 leading-relaxed">
-                                            <strong>Research Interests:</strong> {principalInvestigator.interests}
+                                        <p className="text-lg text-[#000080] font-medium mb-4">{principalInvestigator.title}</p>
+                                        <p className="text-slate-700 leading-relaxed text-lg">
+                                            <span className="font-semibold text-slate-900">Research Interests:</span> {principalInvestigator.interests}
                                         </p>
                                     </div>
-                                    <div className="flex items-center justify-center lg:justify-start gap-4">
+                                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
                                         <a
                                             href={principalInvestigator.linkedInLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 hover:underline"
+                                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors text-sm font-medium"
                                         >
                                             <img
                                                 src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
                                                 alt="LinkedIn"
-                                                className="w-5 h-5"
+                                                className="w-4 h-4"
                                             />
                                             LinkedIn
                                         </a>
@@ -61,12 +64,12 @@ export function TeamSection() {
                                             href={principalInvestigator.iitmprofile}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 hover:underline"
+                                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors text-sm font-medium"
                                         >
                                             <img
                                                 src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png"
                                                 alt="IITM"
-                                                className="w-5 h-5 object-contain"
+                                                className="w-4 h-4 object-contain"
                                             />
                                             IIT Madras
                                         </a>
@@ -74,12 +77,12 @@ export function TeamSection() {
                                             href={principalInvestigator.cerai}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 hover:underline"
+                                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors text-sm font-medium"
                                         >
                                             <img
                                                 src="https://res.cloudinary.com/dgzbrujvx/image/upload/e_background_removal/f_png/v1752322335/0a251fb5-6fba-4a47-90f7-e88790143a00.png"
                                                 alt="CeRAI"
-                                                className="w-5 h-5 object-contain"
+                                                className="w-4 h-4 object-contain"
                                             />
                                             CeRAI
                                         </a>
@@ -91,75 +94,98 @@ export function TeamSection() {
                 </div>
 
                 {/* PhD Scholars */}
-                <div className="py-8 mb-16">
-                    <h3 className="text-4xl font-semibold text-slate-900 mb-8 text-center">PhD Scholars</h3>
-                    <div className="flex flex-wrap justify-center gap-6">
-                        {teamMembers.map((member, index) => (
-                            <Card
-                                key={index}
-                                className="hover:shadow-lg transition-all rounded-xl duration-300 hover:-translate-y-2 cursor-pointer w-full max-w-sm"
-                                onClick={() => setSelectedMember(member)}
-                            >
-                                <CardContent className="p-6 text-center">
-                                    <img
-                                        src={member.image || "/anindita/placeholder.svg"}
-                                        alt={member.name}
-                                        className="w-32 h-32 rounded-full object-cover mx-auto mb-4 shadow-md"
-                                    />
-                                    <h4 className="text-lg font-semibold text-slate-900 mb-1">{member.name}</h4>
-                                    {member.role && (
-                                        <p className="text-sm text-slate-500 mb-3">({member.role})</p>
-                                    )}
-                                    <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">{member.research}</p>
-                                </CardContent>
-                            </Card>
-                        ))}
+                <div className="flex flex-col gap-8">
+                    <div>
+                        <h3 className="text-3xl font-bold text-slate-900 mb-12 text-center">
+                            PhD Scholars
+                        </h3>
+                        <div className="flex flex-wrap justify-center gap-8">
+                            {teamMembers.map((member, index) => (
+                                <Card
+                                    key={index}
+                                    className="group hover:shadow-md border border-slate-200 rounded-xl transition-all duration-300 bg-white cursor-pointer w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] max-w-sm"
+                                    onClick={() => setSelectedMember(member)}
+                                >
+                                    <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                                        <div className="mb-6 relative">
+                                            <img
+                                                src={member.image || "/anindita/placeholder.svg"}
+                                                alt={member.name}
+                                                className="w-32 h-32 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                        </div>
+                                        <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#000080] transition-colors">
+                                            {member.name}
+                                        </h4>
+                                        {member.role && (
+                                            <p className="text-sm font-medium text-slate-500 mb-4 uppercase tracking-wide">
+                                                {member.role}
+                                            </p>
+                                        )}
+                                        <p className="text-sm text-slate-600 leading-relaxed line-clamp-4">
+                                            {member.research}
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Other Members */}
+                    <div>
+                        <div className="flex flex-wrap justify-center gap-8">
+                            {othersMembers.map((member, index) => (
+                                <Card
+                                    key={index}
+                                    className="group hover:shadow-md border border-slate-200 rounded-xl transition-all duration-300 bg-white cursor-pointer w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] max-w-sm"
+                                    onClick={() => setSelectedMember(member)}
+                                >
+                                    <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                                        <div className="mb-6 relative">
+                                            <img
+                                                src={member.image || "/anindita/placeholder.svg"}
+                                                alt={member.name}
+                                                className="w-32 h-32 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                        </div>
+                                        <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#000080] transition-colors">
+                                            {member.name}
+                                        </h4>
+                                        <p className="text-sm font-medium text-slate-500 mb-4 uppercase tracking-wide">
+                                            ({member.role})
+                                        </p>
+                                        <p className="text-sm text-slate-600 leading-relaxed line-clamp-4">
+                                            {member.research}
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
-                {/* Other Members */}
-                <div className="mb-16">
-                    <div className="flex flex-wrap justify-center gap-6">
-                        {othersMembers.map((member, index) => (
-                            <Card
-                                key={index}
-                                className="hover:shadow-lg rounded-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer w-full max-w-sm"
-                                onClick={() => setSelectedMember(member)}
-                            >
-                                <CardContent className="p-6 text-center">
-                                    <img
-                                        src={member.image || "/anindita/placeholder.svg"}
-                                        alt={member.name}
-                                        className="w-32 h-32 rounded-full object-cover mx-auto mb-4 shadow-md"
-                                    />
-                                    <h4 className="text-lg font-semibold text-slate-900 mb-1">{member.name}</h4>
-                                    <p className="text-sm text-slate-500 mb-3">({member.role})</p>
-                                    <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">{member.research}</p>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                </div>
 
                 {/* Research Staff */}
-                <div className="mb-16">
-                    <h3 className="text-4xl font-semibold text-slate-900 mb-8 text-center">Research Project Staff</h3>
-                    <div className="flex flex-wrap justify-center gap-6">
+                <div className="mb-24 mt-24">
+                    <h3 className="text-3xl font-bold text-slate-900 mb-12 text-center">Research Project Staff</h3>
+                    <div className="flex flex-wrap justify-center gap-8">
                         {researchStaff.map((member, index) => (
                             <Card
                                 key={index}
-                                className="hover:shadow-lg rounded-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer w-full max-w-sm"
+                                className="group hover:shadow-md border border-slate-200 rounded-xl transition-all duration-300 bg-white cursor-pointer w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] max-w-sm"
                                 onClick={() => setSelectedMember(member)}
                             >
-                                <CardContent className="p-6 text-center">
-                                    <img
-                                        src={member.image || "/anindita/placeholder.svg"}
-                                        alt={member.name}
-                                        className="w-32 h-32 rounded-full object-cover mx-auto mb-4 shadow-md"
-                                    />
-                                    <h4 className="text-lg font-semibold text-slate-900 mb-3">{member.name}</h4>
-                                    <p className="text-sm text-slate-500 mb-3">({member.role})</p>
-                                    <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">{member.research}</p>
+                                <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                                    <div className="mb-6 relative">
+                                        <img
+                                            src={member.image || "/anindita/placeholder.svg"}
+                                            alt={member.name}
+                                            className="w-32 h-32 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    </div>
+                                    <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#000080] transition-colors">{member.name}</h4>
+                                    <p className="text-sm font-medium text-slate-500 mb-4 uppercase tracking-wide">{member.role}</p>
+                                    <p className="text-sm text-slate-600 leading-relaxed line-clamp-4">{member.research}</p>
                                 </CardContent>
                             </Card>
                         ))}
@@ -168,21 +194,23 @@ export function TeamSection() {
 
                 {/* Friends */}
                 <div className="mb-16">
-                    <h3 className="text-4xl font-semibold text-slate-900 mb-8 text-center">Friends of LC Lab</h3>
+                    <h3 className="text-3xl font-bold text-slate-900 mb-12 text-center">Friends of LC Lab</h3>
                     <div className="flex flex-wrap justify-center gap-6">
                         {friends.map((member, index) => (
                             <Card
                                 key={index}
-                                className="hover:shadow-lg rounded-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer w-full max-w-sm"
+                                className="group hover:shadow-md border border-slate-200 rounded-xl transition-all duration-300 bg-white cursor-pointer w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] max-w-sm"
                             >
-                                <CardContent className="p-6 text-center">
-                                    <img
-                                        src={member.image || "/anindita/placeholder.svg"}
-                                        alt={member.name}
-                                        className="w-32 h-32 rounded-full object-cover mx-auto mb-4 shadow-md"
-                                    />
-                                    <h4 className="text-lg font-semibold text-slate-900 mb-1">{member.name}</h4>
-                                    <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">{member.contribution}</p>
+                                <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                                    <div className="mb-6 relative">
+                                        <img
+                                            src={member.image || "/anindita/placeholder.svg"}
+                                            alt={member.name}
+                                            className="w-32 h-32 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    </div>
+                                    <h4 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#000080] transition-colors">{member.name}</h4>
+                                    <p className="text-sm text-slate-600 leading-relaxed">{member.contribution}</p>
                                 </CardContent>
                             </Card>
                         ))}
@@ -190,21 +218,19 @@ export function TeamSection() {
                 </div>
 
                 {/* Open Position */}
-                <div className="mt-12 text-center">
-                    <Card className="max-w-md mx-auto rounded-xl border-dashed border-2 border-slate-300 hover:border-blue-400 transition-colors">
-                        <CardContent className="p-4">
-                            <h4 className="text-md font-semibold text-slate-900 mb-2">Join Our Team</h4>
-                            <p className="text-xs text-slate-600 mb-2">
-                                We're always looking for passionate researchers to join our lab.
-                            </p>
-                            <button
-                                onClick={() => router.push("/lclab/contact")}
-                                className="text-blue-600 hover:text-blue-700 font-medium text-xs"
-                            >
-                                Get in touch
-                            </button>
-                        </CardContent>
-                    </Card>
+                <div className="mt-16 text-center">
+                    <div className="inline-block p-8 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 hover:bg-white hover:border-[#000080] transition-all duration-300 group max-w-lg w-full">
+                        <h4 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#000080]">Join Our Team</h4>
+                        <p className="text-slate-600 mb-4">
+                            We're always looking for passionate researchers to join our lab.
+                        </p>
+                        <button
+                            onClick={() => router.push("/lclab/contact")}
+                            className="text-[#000080] font-semibold hover:text-blue-800 hover:underline decoration-2 underline-offset-4"
+                        >
+                            Get in touch →
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

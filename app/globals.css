@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('./fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+    url('./fonts/OpenDyslexic-Regular.woff') format('woff'),
+    url('./fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('./fonts/OpenDyslexic-Bold.woff2') format('woff2'),
+    url('./fonts/OpenDyslexic-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('./fonts/OpenDyslexic-Bold-Italic.woff2') format('woff2'),
+    url('./fonts/OpenDyslexic-Bold-Italic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+.dyslexic-mode,
+.dyslexic-mode * {
+  font-family: 'OpenDyslexic', sans-serif !important;
+  /* Optional: Adjust line height slightly for better readability with this font */
+  line-height: 1.6 !important;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -46,19 +81,23 @@
   }
 
   @keyframes float {
+
     0%,
     100% {
       transform: translate(0, 0) rotate(0deg);
       opacity: 0.1;
     }
+
     25% {
       transform: translate(30px, -20px) rotate(5deg);
       opacity: 0.2;
     }
+
     50% {
       transform: translate(-20px, -40px) rotate(-3deg);
       opacity: 0.15;
     }
+
     75% {
       transform: translate(40px, -10px) rotate(2deg);
       opacity: 0.25;
@@ -70,6 +109,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -81,6 +121,7 @@
       opacity: 0;
       transform: translateY(40px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);

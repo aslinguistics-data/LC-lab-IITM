@@ -1,8 +1,8 @@
 "use client"
 
-import {Card, CardContent} from "@/components/ui/card"
-import {Eye, Monitor} from "lucide-react"
-import {eyeLinkPortableDuoImage} from "@/lib/imagesData";
+import { Card, CardContent } from "@/components/ui/card"
+import { Eye, Monitor } from "lucide-react"
+import { eyeLinkPortableDuoImage } from "@/lib/imagesData";
 
 const equipment = [
     {
@@ -21,75 +21,82 @@ const equipment = [
 
 export function FacilitiesSection() {
     return (
-        <section id="facilities" className="pt-32 py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="facilities" className="pt-24 pb-16 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-black text-center mb-8 border-b-4 border-[#000080]  inline-block w-full pb-4">Research Facilities</h2>
-                    <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-6 mt-8">Research Facilities</h2>
+                    <div className="w-24 h-1 bg-[#000080] mx-auto rounded-full mb-8"></div>
+                    <p className="text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed">
                         State-of-the-art equipment and infrastructure supporting cutting-edge language and cognition
                         research.
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-                    {/* Image */}
-                    <div className="relative">
-                        <img
-                            src= {eyeLinkPortableDuoImage}
-                            alt="EyeLink Portable Duo System"
-                            className="max-w-full h-auto rounded-lg shadow-lg"
-                        />
-                    </div>
-
-                    {/* Content */}
-                    <div className="space-y-6">
-                        <div>
-                            <h3 className="text-3xl font-bold text-slate-900 mb-4">EyeLink Portable Duo System</h3>
-                            <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                                Our lab is equipped with the industry-leading EyeLink Portable Duo eye-tracking system
-                                from SR Research.
-                                This high-precision device captures eye movement data with millisecond accuracy,
-                                enabling us to study
-                                real-time language processing, reading comprehension, and visual attention patterns.
-                            </p>
-                            <p className="text-slate-600 leading-relaxed">
-                                The system's portability and flexibility allow us to conduct experiments across diverse
-                                participant
-                                populations and experimental paradigms, supporting our research in cognitive
-                                linguistics,
-                                psycholinguistics, and cross-cultural language studies.
-                            </p>
+                {/* Featured Equipment: EyeLink */}
+                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-16">
+                    <div className="grid lg:grid-cols-2 gap-0">
+                        {/* Image Side */}
+                        <div className="relative h-[400px] lg:h-auto bg-slate-100 flex items-center justify-center p-8">
+                            {/* Ideally use Next.js Image here, but sticking to img tag as per original code structure flexibility */}
+                            <img
+                                src={eyeLinkPortableDuoImage}
+                                alt="EyeLink Portable Duo System"
+                                className="max-w-full max-h-full object-contain drop-shadow-xl"
+                            />
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 pt-4">
-                            <div className="bg-slate-50 p-4 rounded-lg">
-                                <div className="text-2xl font-bold text-blue-600">1000Hz</div>
-                                <div className="text-sm text-slate-600">Sampling Rate</div>
+                        {/* Content Side */}
+                        <div className="p-8 lg:p-12 flex flex-col justify-center">
+                            <h3 className="text-3xl font-bold text-slate-900 mb-6">EyeLink Portable Duo System</h3>
+                            <div className="space-y-6 text-lg text-slate-600 font-light leading-relaxed">
+                                <p>
+                                    Our lab is equipped with the industry-leading EyeLink Portable Duo eye-tracking system
+                                    from SR Research.
+                                    This high-precision device captures eye movement data with millisecond accuracy,
+                                    enabling us to study
+                                    real-time language processing, reading comprehension, and visual attention patterns.
+                                </p>
+                                <p>
+                                    The system's portability and flexibility allow us to conduct experiments across diverse
+                                    participant
+                                    populations and experimental paradigms, supporting our research in cognitive
+                                    linguistics,
+                                    psycholinguistics, and cross-cultural language studies.
+                                </p>
                             </div>
-                            <div className="bg-slate-50 p-4 rounded-lg">
-                                <div className="text-2xl font-bold text-blue-600">0.25°</div>
-                                <div className="text-sm text-slate-600">Accuracy</div>
+
+                            <div className="grid grid-cols-2 gap-6 pt-8 mt-4 border-t border-slate-100">
+                                <div>
+                                    <div className="text-3xl font-bold text-[#000080] mb-1">1000Hz</div>
+                                    <div className="text-sm font-medium text-slate-500 uppercase tracking-wide">Sampling Rate</div>
+                                </div>
+                                <div>
+                                    <div className="text-3xl font-bold text-[#000080] mb-1">0.25°</div>
+                                    <div className="text-sm font-medium text-slate-500 uppercase tracking-wide">Accuracy</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Equipment Grid */}
-                <div className="grid md:grid-cols-2 gap-6">
+                {/* Other Equipment Grid */}
+                <div className="grid md:grid-cols-2 gap-8">
                     {equipment.map((item, index) => (
-                        <Card key={index} className="hover:shadow-lg transition-all rounded-xl duration-300 hover:-translate-y-1">
-                            <CardContent className="p-6">
-                                <div className="flex items-stretch gap-4">
+                        <Card key={index} className="bg-white hover:shadow-md transition-all rounded-xl duration-300 border border-slate-200">
+                            <CardContent className="p-8">
+                                <div className="flex items-start gap-6">
                                     <div className="flex-shrink-0">
-                                        <div className="bg-blue-100 rounded-xl flex items-center justify-center p-4 h-full min-h-[80px]">
-                                            <item.icon className="text-blue-600" size={32}/>
+                                        <div className="bg-blue-50/50 rounded-xl flex items-center justify-center w-16 h-16 text-[#000080]">
+                                            <item.icon size={32} strokeWidth={1.5} />
                                         </div>
                                     </div>
                                     <div className="flex-1">
-                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">{item.name}</h4>
-                                        <p className="text-slate-600 text-sm mb-3 leading-relaxed">{item.description}</p>
-                                        <p className="text-xs text-slate-500">{item.specs}</p>
+                                        <h4 className="text-xl font-bold text-slate-900 mb-3">{item.name}</h4>
+                                        <p className="text-slate-600 text-base mb-4 leading-relaxed font-light">{item.description}</p>
+                                        <div className="inline-block bg-slate-100 px-3 py-1 rounded text-xs font-semibold text-slate-600 uppercase tracking-wide">
+                                            {item.specs}
+                                        </div>
                                     </div>
                                 </div>
                             </CardContent>
