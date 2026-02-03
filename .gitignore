@@ -28,5 +28,5 @@ next-env.d.ts
 
 .idea
 out/
+*.py
 .vscode
-python-deploy-website.py
